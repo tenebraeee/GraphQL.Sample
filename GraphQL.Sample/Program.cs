@@ -9,7 +9,9 @@ builder.Services.AddDbContext<SqlContext>(o =>
     );
 
 builder.Services.AddGraphQLServer()
-                .AddQueryType<Query>();
+                .AddMutationConventions()
+                .AddQueryType<BuildingQuery>()
+                .AddMutationType<Mutation>();
 
 
 var app = builder.Build();
