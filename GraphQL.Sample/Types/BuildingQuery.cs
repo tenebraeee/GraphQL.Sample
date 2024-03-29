@@ -1,8 +1,9 @@
-﻿using GraphQL.Sample.DB;
-using GraphQL.Sample.DB.Entities;
+﻿using GraphQL.Sample.DB.Entities;
+using GraphQL.Sample.DB;
 
 namespace GraphQL.Sample.Types
 {
+    [ExtendObjectType("Query")]
     public class BuildingQuery
     {
         public async Task<IQueryable<Building>> GetBuildingsAsync([Service] SqlContext context)

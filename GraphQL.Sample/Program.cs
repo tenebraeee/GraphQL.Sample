@@ -10,8 +10,12 @@ builder.Services.AddDbContext<SqlContext>(o =>
 
 builder.Services.AddGraphQLServer()
                 .AddMutationConventions()
-                .AddQueryType<BuildingQuery>()
-                .AddMutationType<Mutation>();
+                .AddQueryType(d => d.Name("Query"))
+                    .AddTypeExtension<BuildingQuery>()
+                    .AddTypeExtension<RoomQuery>()
+                .AddMutationType(m => m.Name("Mutation"))
+                    .AddTypeExtension<BuildingMutation>()
+                    .AddTypeExtension<RoomMutation>();
 
 
 var app = builder.Build();
