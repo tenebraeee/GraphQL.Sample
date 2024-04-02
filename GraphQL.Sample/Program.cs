@@ -13,9 +13,7 @@ builder.Services.AddGraphQLServer()
                 .AddQueryType(d => d.Name("Query"))
                     .AddTypeExtension<BuildingQuery>()
                     .AddTypeExtension<RoomQuery>()
-                .AddMutationType(m => m.Name("Mutation"))
-                    .AddTypeExtension<BuildingMutation>()
-                    .AddTypeExtension<RoomMutation>();
+                .AddMutationType<Mutation>();
 
 
 var app = builder.Build();

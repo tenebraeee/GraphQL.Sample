@@ -4,8 +4,7 @@ using Mapster;
 
 namespace GraphQL.Sample.Types
 {
-    [ExtendObjectType("Mutation")]
-    public class BuildingMutation
+    public partial class Mutation
     {
         public async Task<Building> BuildingAsync([Service] SqlContext context, BuildingModel model)
         {
