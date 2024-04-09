@@ -1,19 +1,18 @@
 ﻿using GraphQL.Sample.DB.Entities;
-using GraphQL.Sample.DB;
+using GraphQL.Sample.Services.Buildings;
 
 namespace GraphQL.Sample.Types
 {
     [ExtendObjectType("Query")]
     public class BuildingQuery
     {
-        public async Task<IQueryable<Building>> GetBuildingsAsync([Service] SqlContext context)
+        [UsePaging]
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
+        public IQueryable<Building> GetBuildings(IBuildingService service)
         {
-            return context.Set<Building>();
-        }
-
-        public async Task<Building?> GetBuildingAsync([Service] SqlContext context, Guid id)
-        {
-            return await context.FindAsync<Building>(id);
+            return service.GetAll();
         }
     }
 }
